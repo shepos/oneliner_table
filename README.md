@@ -65,7 +65,8 @@ Dick 9 Australia
 |---|---|---|
 |`touch a.txt` | `New-Item -Type File a.txt`||
 |`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|
-|`mkdir -p sub/dir`|``mkdir -ea 0 sub/dir`|
-|`grep "word" -r .`||
+|`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|
+|`grep "word" -r .`|`ls -r . \| Select-String -Pattern "word"`|
+|`grep "word" -l -r .`|`ls -r . \| Select-String -Pattern "word" \| Select-Object -Unique Path`|see the [link](https://superuser.com/a/742120)|
 |`find . -iname \*.txt`||
 |`find . -iname \*.xlsm -exec du -bh {} \;`||
