@@ -3,7 +3,7 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`|Get-Help|
-|`echo abcba | sed s/b/z/g`, `echo abcba | tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
+|`echo abcba \| sed s/b/z/g`, `echo abcba | tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 |`touch a.txt` | `New-Item -Type File a.txt`|
 
 # data-processing
@@ -13,7 +13,7 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`seq 1 10`, `{1..10}`| `1..10`|
-|`seq -f %03g 10`|`1..10 | % { '{0:d3}' -f $_ }`|
+|`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|
 
 ## row * 1
 
@@ -27,5 +27,5 @@ hij
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt | wc -l` | `(cat data.txt).Length`|
-|`cat data.txt | grep -E "^a"` | `cat data.txt | ? { $_ -match "^a" }`|
+|`cat data.txt \| wc -l` | `(cat data.txt).Length`|
+|`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -match "^a" }`|
