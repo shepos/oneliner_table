@@ -1,6 +1,10 @@
 # alias table
 
- `alias | Sort-Object -Property Definition | % { "|" + $_.Definition + "|" +$_.Name+"|" }`
+ ```ps
+ PS > "|{0}|{1}|" -f "long","short"
+ PS > "|{0}|{0}|" -f "---"
+ PS > alias | Sort-Object -Property Definition | % { "|{0}|{1}|" -f $_.Definition, $_.Name }
+ ```
  
 |long|short|
 |---|---|
