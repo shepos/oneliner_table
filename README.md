@@ -65,8 +65,8 @@ Dick 9 Australia
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt \| cut -f 2,3 -d " "`|`cat .\data.txt \| cfs -d " " \| % { "{0} {1}" -f $_.P1,$_.P2 }`||
-|`cat data.txt \| sort -k2 -n`|`cat ./person.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
+|`cat data.txt \| cut -f 1,3 -d " "`|`cat data.txt \| cfs -d " " \| ft P1,P3`||
+|`cat data.txt \| sort -k2 -n`|`cat data.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
 
 # file
 
