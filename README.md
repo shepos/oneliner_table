@@ -1,9 +1,10 @@
 # bash powershell table
 
+# helper command
+
 |bash|powershell|remarks|
 |---|---|---|
-|`<cmd> --help`|`man <cmd>`, `help <cmd>`|Get-Help|
-|`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
+|`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
 
 # data-processing
 
@@ -12,7 +13,13 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`seq 1 10`, `{1..10}`| `1..10`|
-|`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|
+|`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`||
+
+## processing string
+
+|bash|powershell|remarks|
+|---|---|---|
+|`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 
 ## parse string
 
@@ -42,7 +49,7 @@ hij
 |---|---|---|
 |`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
 |`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
-|`cat data.txt \| head -n2`|||
+|`cat data.txt \| head -n2`|`cat data.txt \| select -First 2`||
 
 ## row * col
 
@@ -57,6 +64,8 @@ Dick 9 Australia
 
 |bash|powershell|remarks|
 |---|---|---|
+|`cat data.txt` \| cut -f 2,3 -d " "`|`cat .\data.txt \| cfs -d " " \| % { "{0} {1}" -f $_.P1,$_.P2 }`||
+|`cat data.txt \| sort -k2 -n`|`cat ./person.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
 
 # file
 
@@ -68,13 +77,20 @@ Dick 9 Australia
 |`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|
 |`grep "word" -r .`|`ls -r . \| Select-String -Pattern "word"`|
 |`grep "word" -l -r .`|`ls -r . \| Select-String -Pattern "word" \| Select-Object -Unique Path`|see the [link](https://superuser.com/a/742120)|
-|`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*\.txt" }`|
-|`find . -type d dirA|||
-|`find . -iname *.xlsm -exec du -bh {} \;`|||
+|`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*.txt" }`|
+|`find . -type d dirA`|||
+|`find . -iname *.txt -exec du -bh {} \;`|||
 
 # system
 
 |bash|powershell|remarks|
 |---|---|---|
-|`ps aux`|`ps`|`ps`=`Get-Process`|
-|`kill -9 <process>`|`kill <process>`|Stop-Process|
+|`ps aux`|`ps`||
+|`kill -9 <process>`|`kill <process>`||
+
+# configs
+
+|bash|powershell|remarks|
+|---|---|---|
+|`~/.bashrc`|`$profile`|
+|`$BASH --version`|`$PSVersionTable`|
