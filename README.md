@@ -40,7 +40,7 @@ hij
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt \| wc -l` | `(cat data.txt).Length`|
+|`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
 |`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -match "^a" }`|
 |`cat data.txt \| head -n2`|||
 
