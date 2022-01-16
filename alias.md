@@ -1,169 +1,168 @@
 # alias table
 
  ```ps
- PS > "|{0}|{1}|" -f "long","short"
- PS > "|{0}|{0}|" -f "---"
- PS > alias | Sort-Object -Property Definition | % { "|{0}|{1}|" -f $_.Definition, $_.Name }
+ PS > "|{0}|{1}|{2}|" -f "short","long","desc"
+ PS > "|{0}|{0}|{0}|" -f "---"
+ PS > alias | sort -p definition |% { "|{0}|{1}|{2}|" -f $_.Name, $_.Definition,(Get-Help $_.Definition).description.Text.split("`r`n")[0] }
  ```
  
-|long|short|
-|---|---|
-|Add-Content|ac|
-|Add-PSSnapIn|asnp|
-|Clear-Content|clc|
-|Clear-History|clhy|
-|Clear-Host|clear|
-|Clear-Host|cls|
-|Clear-Item|cli|
-|Clear-ItemProperty|clp|
-|Clear-Variable|clv|
-|Compare-Object|compare|
-|Compare-Object|diff|
-|Connect-PSSession|cnsn|
-|ConvertFrom-String|CFS|
-|Convert-Path|cvpa|
-|Copy-Item|copy|
-|Copy-Item|cp|
-|Copy-Item|cpi|
-|Copy-ItemProperty|cpp|
-|Disable-PSBreakpoint|dbp|
-|Disconnect-PSSession|dnsn|
-|Enable-PSBreakpoint|ebp|
-|Enter-PSSession|etsn|
-|Exit-PSSession|exsn|
-|Export-Alias|epal|
-|Export-Csv|epcsv|
-|Export-PSSession|epsn|
-|ForEach-Object|foreach|
-|ForEach-Object|%|
-|Format-Custom|fc|
-|Format-Hex|fhx|
-|Format-List|fl|
-|Format-Table|ft|
-|Format-Wide|fw|
-|Get-Alias|gal|
-|Get-ChildItem|ls|
-|Get-ChildItem|gci|
-|Get-ChildItem|dir|
-|Get-Clipboard|gcb|
-|Get-Command|gcm|
-|Get-ComputerInfo|gin|
-|Get-Content|gc|
-|Get-Content|cat|
-|Get-Content|type|
-|Get-History|h|
-|Get-History|ghy|
-|Get-History|history|
-|Get-Item|gi|
-|Get-ItemProperty|gp|
-|Get-ItemPropertyValue|gpv|
-|Get-Job|gjb|
-|Get-Location|gl|
-|Get-Location|pwd|
-|Get-Member|gm|
-|Get-Module|gmo|
-|Get-Process|gps|
-|Get-Process|ps|
-|Get-PSBreakpoint|gbp|
-|Get-PSCallStack|gcs|
-|Get-PSDrive|gdr|
-|Get-PSSession|gsn|
-|Get-PSSnapIn|gsnp|
-|Get-Service|gsv|
-|Get-TimeZone|gtz|
-|Get-Unique|gu|
-|Get-Variable|gv|
-|Get-WmiObject|gwmi|
-|Group-Object|group|
-|help|man|
-|Import-Alias|ipal|
-|Import-Csv|ipcsv|
-|Import-Module|ipmo|
-|Import-PSSession|ipsn|
-|Invoke-Command|icm|
-|Invoke-Expression|iex|
-|Invoke-History|r|
-|Invoke-History|ihy|
-|Invoke-Item|open|
-|Invoke-Item|ii|
-|Invoke-RestMethod|irm|
-|Invoke-WebRequest|iwr|
-|Invoke-WebRequest|wget|
-|Invoke-WebRequest|curl|
-|Invoke-WMIMethod|iwmi|
-|Measure-Object|measure|
-|mkdir|md|
-|Move-Item|mv|
-|Move-Item|move|
-|Move-Item|mi|
-|Move-ItemProperty|mp|
-|New-Alias|nal|
-|New-Item|ni|
-|New-Module|nmo|
-|New-PSDrive|ndr|
-|New-PSDrive|mount|
-|New-PSSession|nsn|
-|New-PSSessionConfigurationFile|npssc|
-|New-Variable|nv|
-|Out-GridView|ogv|
-|Out-Host|oh|
-|Out-Printer|lp|
-|Pop-Location|popd|
-|powershell_ise.exe|ise|
-|Push-Location|pushd|
-|Receive-Job|rcjb|
-|Receive-PSSession|rcsn|
-|Remove-Item|rm|
-|Remove-Item|rmdir|
-|Remove-Item|ri|
-|Remove-Item|erase|
-|Remove-Item|rd|
-|Remove-Item|del|
-|Remove-ItemProperty|rp|
-|Remove-Job|rjb|
-|Remove-Module|rmo|
-|Remove-PSBreakpoint|rbp|
-|Remove-PSDrive|rdr|
-|Remove-PSSession|rsn|
-|Remove-PSSnapin|rsnp|
-|Remove-Variable|rv|
-|Remove-WMIObject|rwmi|
-|Rename-Item|ren|
-|Rename-Item|rni|
-|Rename-ItemProperty|rnp|
-|Resolve-Path|rvpa|
-|Resume-Job|rujb|
-|Select-Object|select|
-|Select-String|sls|
-|Set-Alias|sal|
-|Set-Clipboard|scb|
-|Set-Content|sc|
-|Set-Item|si|
-|Set-ItemProperty|sp|
-|Set-Location|cd|
-|Set-Location|sl|
-|Set-Location|chdir|
-|Set-PSBreakpoint|sbp|
-|Set-TimeZone|stz|
-|Set-Variable|sv|
-|Set-Variable|set|
-|Set-WMIInstance|swmi|
-|Show-Command|shcm|
-|Sort-Object|sort|
-|Start-Job|sajb|
-|Start-Process|saps|
-|Start-Process|start|
-|Start-Service|sasv|
-|Start-Sleep|sleep|
-|Stop-Job|spjb|
-|Stop-Process|kill|
-|Stop-Process|spps|
-|Stop-Service|spsv|
-|Suspend-Job|sujb|
-|Tee-Object|tee|
-|Trace-Command|trcm|
-|Wait-Job|wjb|
-|Where-Object|where|
-|Where-Object|?|
-|Write-Output|write|
-|Write-Output|echo|
+|short|long|desc|
+|---|---|---|
+|ac|Add-Content|The `Add-Content` cmdlet appends content to a specified item or file. You can specify the content by typing the content in the command or by specifying an object that contains the content.|
+|asnp|Add-PSSnapIn|The `Add-PSSnapin` cmdlet adds registered Windows PowerShell snap-ins to the current session. After the snap-ins are added, you can use the cmdlets and providers that the snap-ins support in the current session.|
+|clc|Clear-Content|The `Clear-Content` cmdlet deletes the contents of an item, such as deleting the text from a file, but it does not delete the item. As a result, the item exists, but it is empty. The `Clear-Content` is similar to `Clear-Item`, but it works on items with contents, instead of items with values.|
+|clhy|Clear-History|`Clear-History` deletes the command history from a PowerShell session. Each PowerShell session has its own command history. To display the command history, use the `Get-History` cmdlet.|
+|clear|Clear-Host|The `Clear-Host` function removes all text from the current display, including commands and output that might have accumulated. When complete, it displays the command prompt. You can use the function name or its alias, `cls`.|
+|cls|Clear-Host|The `Clear-Host` function removes all text from the current display, including commands and output that might have accumulated. When complete, it displays the command prompt. You can use the function name or its alias, `cls`.|
+|cli|Clear-Item|The `Clear-Item` cmdlet clears the content of an item, but it does not delete the item. For example, the `Clear-Item` cmdlet can delete the value of a variable, but it does not delete the variable. The value that used to represent a cleared item is defined by each PowerShell provider. This cmdlet is similar to `Clear-Content`, but it works on aliases and variables, instead of files.|
+|clp|Clear-ItemProperty|The `Clear-ItemProperty` cmdlet clears the value of a property, but it does not delete the property. You can use this cmdlet to delete the data from a registry value.|
+|clv|Clear-Variable|The `Clear-Variable` cmdlet deletes the data stored in a variable, but it does not delete the variable. As a result, the value of the variable is NULL (empty). If the variable has a specified data or object type, this cmdlet preserves the type of the object stored in the variable.|
+|compare|Compare-Object|The `Compare-Object` cmdlet compares two sets of objects. One set of objects is the reference , and the other set of objects is the difference .|
+|diff|Compare-Object|The `Compare-Object` cmdlet compares two sets of objects. One set of objects is the reference , and the other set of objects is the difference .|
+|cnsn|Connect-PSSession|The `Connect-PSSession` cmdlet reconnects to user-managed PowerShell sessions ( PSSessions ) that were disconnected. It works on sessions that are disconnected intentionally, such as by using the `Disconnect-PSSession` cmdlet or the InDisconnectedSession parameter of the `Invoke-Command` cmdlet, and those that were disconnected unintentionally, such as by a temporary network outage.|
+|CFS|ConvertFrom-String|The `ConvertFrom-String` cmdlet extracts and parses structured properties from string content. This cmdlet generates an object by parsing text from a traditional text stream. For each string in the pipeline, the cmdlet splits the input by either a delimiter or a parse expression, and then assigns property names to each of the resulting split elements. You can provide these property names; if you do not, they are automatically generated for you.|
+|cvpa|Convert-Path|The `Convert-Path` cmdlet converts a path from a PowerShell path to a PowerShell provider path.|
+|copy|Copy-Item|The `Copy-Item` cmdlet copies an item from one location to another location in the same namespace. For instance, it can copy a file to a folder, but it can't copy a file to a certificate drive.|
+|cp|Copy-Item|The `Copy-Item` cmdlet copies an item from one location to another location in the same namespace. For instance, it can copy a file to a folder, but it can't copy a file to a certificate drive.|
+|cpi|Copy-Item|The `Copy-Item` cmdlet copies an item from one location to another location in the same namespace. For instance, it can copy a file to a folder, but it can't copy a file to a certificate drive.|
+|cpp|Copy-ItemProperty|The `Copy-ItemProperty` cmdlet copies a property and value from a specified location to another location. For instance, you can use this cmdlet to copy one or more registry entries from one registry key to another registry key.|
+|dbp|Disable-PSBreakpoint|The `Disable-PSBreakpoint` cmdlet disables breakpoints, which assures that they are not hit when the script runs. You can use it to disable all breakpoints, or you can specify breakpoints by submitting breakpoint objects or breakpoint IDs.|
+|dnsn|Disconnect-PSSession|The `Disconnect-PSSession` cmdlet disconnects a PowerShell session ("PSSession"), such as one started by using the `New-PSSession` cmdlet, from the current session. As a result, the PSSession is in a disconnected state. You can connect to the disconnected PSSession from the current session or from another session on the local computer or a different computer.|
+|ebp|Enable-PSBreakpoint|The `Enable-PSBreakpoint` cmdlet re-enables disabled breakpoints. You can use it to enable all breakpoints, or specific breakpoints by providing breakpoint objects or IDs.|
+|etsn|Enter-PSSession|The `Enter-PSSession` cmdlet starts an interactive session with a single remote computer. During the session, the commands that you type run on the remote computer, just as if you were typing directly on the remote computer. You can have only one interactive session at a time.|
+|exsn|Exit-PSSession|The `Exit-PSSession` cmdlet ends interactive sessions that you started by using the `Enter-PSSession` cmdlet.|
+|epal|Export-Alias|The `Export-Alias` cmdlet exports the aliases in the current session to a file. If the output file does not exist, the cmdlet will create it.|
+|epcsv|Export-Csv|The `Export-CSV` cmdlet creates a CSV file of the objects that you submit. Each object is a row that includes a comma-separated list of the object's property values. You can use the `Export-CSV` cmdlet to create spreadsheets and share data with programs that accept CSV files as input.|
+|epsn|Export-PSSession|The `Export-PSSession` cmdlet gets cmdlets, functions, aliases, and other command types from another PowerShell session (PSSession) on a local or remote computer and saves them in a PowerShell module. To add the commands from the module to the current session, use the `Import-Module` cmdlet.|
+|foreach|ForEach-Object|The `ForEach-Object` cmdlet performs an operation on each item in a collection of input objects. The input objects can be piped to the cmdlet or specified by using the InputObject parameter.|
+|%|ForEach-Object|The `ForEach-Object` cmdlet performs an operation on each item in a collection of input objects. The input objects can be piped to the cmdlet or specified by using the InputObject parameter.|
+|fc|Format-Custom|The `Format-Custom` cmdlet formats the output of a command as defined in an alternate view. `Format-Custom` is designed to display views that are not just tables or just lists. You can use the views defined in the `*format.PS1XML` files in the PowerShell directory, or you can create your own views in new PS1XML files and use the `Update-FormatData` cmdlet to add them to PowerShell.|
+|fhx|Format-Hex|The `Format-Hex` cmdlet displays a file or other input as hexadecimal values. To determine the offset of a character from the output, add the number at the leftmost of the row to the number at the top of the column for that character.|
+|fl|Format-List|The `Format-List` cmdlet formats the output of a command as a list of properties in which each property is displayed on a separate line. You can use `Format-List` to format and display all or selected properties of an object as a list (format-list *).|
+|ft|Format-Table|The `Format-Table` cmdlet formats the output of a command as a table with the selected properties of the object in each column. The object type determines the default layout and properties that are displayed in each column. You can use the Property parameter to select the properties that you want to display.|
+|fw|Format-Wide|The `Format-Wide` cmdlet formats objects as a wide table that displays only one property of each object. You can use the Property parameter to determine which property is displayed.|
+|gal|Get-Alias|The `Get-Alias` cmdlet gets the aliases in the current session. This includes built-in aliases, aliases that you have set or imported, and aliases that you have added to your PowerShell profile.|
+|ls|Get-ChildItem|The `Get-ChildItem` cmdlet gets the items in one or more specified locations. If the item is a container, it gets the items inside the container, known as child items. You can use the Recurse parameter to get items in all child containers and use the Depth parameter to limit the number of levels to recurse.|
+|gci|Get-ChildItem|The `Get-ChildItem` cmdlet gets the items in one or more specified locations. If the item is a container, it gets the items inside the container, known as child items. You can use the Recurse parameter to get items in all child containers and use the Depth parameter to limit the number of levels to recurse.|
+|dir|Get-ChildItem|The `Get-ChildItem` cmdlet gets the items in one or more specified locations. If the item is a container, it gets the items inside the container, known as child items. You can use the Recurse parameter to get items in all child containers and use the Depth parameter to limit the number of levels to recurse.|
+|gcb|Get-Clipboard|The `Get-Clipboard` cmdlet gets the current Windows clipboard entry. Multiple lines of text are returned as an array of strings similar to `Get-Content`.|
+|gcm|Get-Command|The `Get-Command` cmdlet gets all commands that are installed on the computer, including cmdlets, aliases, functions, filters, scripts, and applications. `Get-Command` gets the commands from PowerShell modules and commands that were imported from other sessions. To get only commands that have been imported into the current session, use the ListImported parameter.|
+|gin|Get-ComputerInfo|The `Get-ComputerInfo` cmdlet gets a consolidated object of system and operating system properties. This cmdlet was introduced in Windows PowerShell 5.1.|
+|gc|Get-Content|The `Get-Content` cmdlet gets the content of the item at the location specified by the path, such as the text in a file or the content of a function. For files, the content is read one line at a time and returns a collection of objects, each of which represents a line of content.|
+|cat|Get-Content|The `Get-Content` cmdlet gets the content of the item at the location specified by the path, such as the text in a file or the content of a function. For files, the content is read one line at a time and returns a collection of objects, each of which represents a line of content.|
+|type|Get-Content|The `Get-Content` cmdlet gets the content of the item at the location specified by the path, such as the text in a file or the content of a function. For files, the content is read one line at a time and returns a collection of objects, each of which represents a line of content.|
+|h|Get-History|The `Get-History` cmdlet gets the session history, that is, the list of commands entered during the current session.|
+|ghy|Get-History|The `Get-History` cmdlet gets the session history, that is, the list of commands entered during the current session.|
+|history|Get-History|The `Get-History` cmdlet gets the session history, that is, the list of commands entered during the current session.|
+|gi|Get-Item|The `Get-Item` cmdlet gets the item at the specified location. It doesn't get the contents of the item at the location unless you use a wildcard character (`*`) to request all the contents of the item.|
+|gp|Get-ItemProperty|The `Get-ItemProperty` cmdlet gets the properties of the specified items. For example, you can use this cmdlet to get the value of the LastAccessTime property of a file object. You can also use this cmdlet to view registry entries and their values.|
+|gpv|Get-ItemPropertyValue|The `Get-ItemPropertyValue` gets the current value for a property that you specify when you use the Name parameter, located in a path that you specify with either the Path or LiteralPath parameters.|
+|gjb|Get-Job|The `Get-Job` cmdlet gets objects that represent the background jobs that were started in the current session. You can use `Get-Job` to get jobs that were started by using the `Start-Job` cmdlet, or by using the AsJob parameter of any cmdlet.|
+|gl|Get-Location|The `Get-Location` cmdlet gets an object that represents the current directory, much like the print working directory (pwd) command.|
+|pwd|Get-Location|The `Get-Location` cmdlet gets an object that represents the current directory, much like the print working directory (pwd) command.|
+|gm|Get-Member|The `Get-Member` cmdlet gets the members, the properties and methods, of objects.|
+|gmo|Get-Module|The `Get-Module` cmdlet lists the PowerShell modules that have been imported, or that can be imported, into a PowerShell session. Without parameters, `Get-Module` gets modules that have been imported into the current session. The ListAvailable parameter is used to list the modules that are available to be imported from the paths specified in the PSModulePath environment variable (`$env:PSModulePath`).|
+|gps|Get-Process|The `Get-Process` cmdlet gets the processes on a local or remote computer.|
+|ps|Get-Process|The `Get-Process` cmdlet gets the processes on a local or remote computer.|
+|gbp|Get-PSBreakpoint|The `Get-PSBreakPoint` cmdlet gets the breakpoints that are set in the current session. You can use the cmdlet parameters to get particular breakpoints.|
+|gcs|Get-PSCallStack|The `Get-PSCallStack` cmdlet displays the current call stack.|
+|gdr|Get-PSDrive|The `Get-PSDrive` cmdlet gets the drives in the current session. You can get a particular drive or all drives in the session.|
+|gsn|Get-PSSession|The `Get-PSSession` cmdlet gets the user-managed PowerShell sessions ( PSSessions ) on local and remote computers.|
+|gsnp|Get-PSSnapIn|The `Get-PSSnapin` cmdlet gets the Windows PowerShell snap-ins that have been added to the current session or that have been registered on the system. This cmdlet lists the snap-ins in the order in which they are detected.|
+|gsv|Get-Service|The `Get-Service` cmdlet gets objects that represent the services on a local computer or on a remote computer, including running and stopped services.|
+|gtz|Get-TimeZone|The `Get-TimeZone` cmdlet gets the current time zone or a list of available time zones.|
+|gu|Get-Unique|The `Get-Unique` cmdlet compares each item in a sorted list to the next item, eliminates duplicates, and returns only one instance of each item. The list must be sorted for the cmdlet to work properly.|
+|gv|Get-Variable|The `Get-Variable` cmdlet gets the PowerShell variables in the current console. You can retrieve just the values of the variables by specifying the ValueOnly parameter, and you can filter the variables returned by name.|
+|gwmi|Get-WmiObject|Starting in PowerShell 3.0, this cmdlet has been superseded by `Get-CimInstance`.|
+|group|Group-Object|The `Group-Object` cmdlet displays objects in groups based on the value of a specified property. `Group-Object` returns a table with one row for each property value and a column that displays the number of items with that value.|
+|man|help|The `Get-Help` cmdlet displays information about PowerShell concepts and commands, including cmdlets, functions, Common Information Model (CIM) commands, workflows, providers, aliases, and scripts.|
+|ipal|Import-Alias|The `Import-Alias` cmdlet imports an alias list from a file.|
+|ipcsv|Import-Csv|The `Import-Csv` cmdlet creates table-like custom objects from the items in CSV files. Each column in the CSV file becomes a property of the custom object and the items in rows become the property values. `Import-Csv` works on any CSV file, including files that are generated by the `Export-Csv` cmdlet.|
+|ipmo|Import-Module|The `Import-Module` cmdlet adds one or more modules to the current session. Starting in PowerShell 3.0, installed modules are automatically imported to the session when you use any commands or providers in the module. However, you can still use the `Import-Module` command to import a module. You can disable automatic module importing using the `$PSModuleAutoloadingPreference` preference variable. For more information about the `$PSModuleAutoloadingPreference` variable, see about_Preference_Variables (About/about_Preference_Variables.md).|
+|ipsn|Import-PSSession|The `Import-PSSession` cmdlet imports commands , such as cmdlets, functions, and aliases, from a PSSession on a local or remote computer into the current session. You can import any command that the `Get-Command` cmdlet can find in the PSSession.|
+|icm|Invoke-Command|The `Invoke-Command` cmdlet runs commands on a local or remote computer and returns all output from the commands, including errors. Using a single `Invoke-Command` command, you can run commands on multiple computers.|
+|iex|Invoke-Expression|The `Invoke-Expression` cmdlet evaluates or runs a specified string as a command and returns the results of the expression or command. Without `Invoke-Expression`, a string submitted at the command line is returned (echoed) unchanged.|
+|r|Invoke-History|The `Invoke-History` cmdlet runs commands from the session history. You can pass objects representing the commands from Get-History to `Invoke-History`, or you can identify commands in the current history by using their Id number. To find the identification number of a command, use the `Get-History` cmdlet.|
+|ihy|Invoke-History|The `Invoke-History` cmdlet runs commands from the session history. You can pass objects representing the commands from Get-History to `Invoke-History`, or you can identify commands in the current history by using their Id number. To find the identification number of a command, use the `Get-History` cmdlet.|
+|open|Invoke-Item|The `Invoke-Item` cmdlet performs the default action on the specified item. For example, it runs an executable file or opens a document file in the application associated with the document file type. The default action depends on the type of item and is determined by the PowerShell provider that provides access to the data.|
+|ii|Invoke-Item|The `Invoke-Item` cmdlet performs the default action on the specified item. For example, it runs an executable file or opens a document file in the application associated with the document file type. The default action depends on the type of item and is determined by the PowerShell provider that provides access to the data.|
+|irm|Invoke-RestMethod|The `Invoke-RestMethod` cmdlet sends HTTP and HTTPS requests to Representational State Transfer (REST) web services that return richly structured data.|
+|iwr|Invoke-WebRequest|The `Invoke-WebRequest` cmdlet sends HTTP, HTTPS, FTP, and FILE requests to a web page or web service. It parses the response and returns collections of forms, links, images, and other significant HTML elements.|
+|wget|Invoke-WebRequest|The `Invoke-WebRequest` cmdlet sends HTTP, HTTPS, FTP, and FILE requests to a web page or web service. It parses the response and returns collections of forms, links, images, and other significant HTML elements.|
+|curl|Invoke-WebRequest|The `Invoke-WebRequest` cmdlet sends HTTP, HTTPS, FTP, and FILE requests to a web page or web service. It parses the response and returns collections of forms, links, images, and other significant HTML elements.|
+|iwmi|Invoke-WMIMethod|The `Invoke-WmiMethod` cmdlet calls the methods of Windows Management Instrumentation (WMI) objects.|
+|measure|Measure-Object|The `Measure-Object` cmdlet calculates the property values of certain types of object. `Measure-Object` performs three types of measurements, depending on the parameters in the command.|
+|md|mkdir|The `New-Item` cmdlet creates a new item and sets its value. The types of items that can be created depend on the location of the item. For example, in the file system, `New-Item` creates files and folders. In the registry, `New-Item` creates registry keys and entries.|
+|mv|Move-Item|The `Move-Item` cmdlet moves an item, including its properties, contents, and child items, from one location to another location. The locations must be supported by the same provider. For example, it can move a file or subdirectory from one directory to another or move a registry subkey from one key to another. When you move an item, it is added to the new location and deleted from its original location.|
+|move|Move-Item|The `Move-Item` cmdlet moves an item, including its properties, contents, and child items, from one location to another location. The locations must be supported by the same provider. For example, it can move a file or subdirectory from one directory to another or move a registry subkey from one key to another. When you move an item, it is added to the new location and deleted from its original location.|
+|mi|Move-Item|The `Move-Item` cmdlet moves an item, including its properties, contents, and child items, from one location to another location. The locations must be supported by the same provider. For example, it can move a file or subdirectory from one directory to another or move a registry subkey from one key to another. When you move an item, it is added to the new location and deleted from its original location.|
+|mp|Move-ItemProperty|The `Move-ItemProperty` cmdlet moves a property of an item from one item to another item. For instance, it can move a registry entry from one registry key to another registry key. When you move an item property, it is added to the new location and deleted from its original location.|
+|nal|New-Alias|The `New-Alias` cmdlet creates a new alias in the current Windows PowerShell session. Aliases created by using `New-Alias` are not saved after you exit the session or close Windows PowerShell. You can use the `Export-Alias` cmdlet to save your alias information to a file. You can later use `Import-Alias` to retrieve that saved alias information.|
+|ni|New-Item|The `New-Item` cmdlet creates a new item and sets its value. The types of items that can be created depend on the location of the item. For example, in the file system, `New-Item` creates files and folders. In the registry, `New-Item` creates registry keys and entries.|
+|nmo|New-Module|The `New-Module` cmdlet creates a dynamic module from a script block. The members of the dynamic module, such as functions and variables, are immediately available in the session and remain available until you close the session.|
+|ndr|New-PSDrive|The `New-PSDrive` cmdlet creates temporary and persistent drives that are mapped to or associated with a location in a data store, such as a network drive, a directory on the local computer, or a registry key, and persistent Windows mapped network drives that are associated with a file system location on a remote computer.|
+|mount|New-PSDrive|The `New-PSDrive` cmdlet creates temporary and persistent drives that are mapped to or associated with a location in a data store, such as a network drive, a directory on the local computer, or a registry key, and persistent Windows mapped network drives that are associated with a file system location on a remote computer.|
+|nsn|New-PSSession|The `New-PSSession` cmdlet creates a PowerShell session ( PSSession ) on a local or remote computer. When you create a PSSession , PowerShell establishes a persistent connection to the remote computer.|
+|npssc|New-PSSessionConfigurationFile|The `New-PSSessionConfigurationFile` cmdlet creates a file of settings that define a session configuration and the environment of sessions that are created by using the session configuration. To use the file in a session configuration, use the Path parameter of the `Register-PSSessionConfiguration` or `Set-PSSessionConfiguration` cmdlets.|
+|nv|New-Variable|The `New-Variable` cmdlet creates a new variable in Windows PowerShell. You can assign a value to the variable while creating it or assign or change the value after it is created.|
+|ogv|Out-GridView|The `Out-GridView` cmdlet sends the output from a command to a grid view window where the output is displayed in an interactive table.|
+|oh|Out-Host|The `Out-Host` cmdlet sends output to the PowerShell host for display. The host displays the output at the command line. Because `Out-Host` is the default, you don't have to specify it unless you want to use its parameters.|
+|lp|Out-Printer|The `Out-Printer` cmdlet sends output to the default printer or to an alternate printer, if one is specified.|
+|popd|Pop-Location|The `Pop-Location` cmdlet changes the current location to the location most recently pushed onto the stack by using the `Push-Location` cmdlet. You can pop a location from the default stack or from a stack that you create by using a `Push-Location` command.|
+|pushd|Push-Location|The `Push-Location` cmdlet adds ("pushes") the current location onto a location stack. If you specify a path, `Push-Location` pushes the current location onto a location stack and then changes the current location to the location specified by the path. You can use the `Pop-Location` cmdlet to get locations from the location stack.|
+|rcjb|Receive-Job|The `Receive-Job` cmdlet gets the results of PowerShell background jobs, such as those started by using the `Start-Job` cmdlet or the AsJob parameter of any cmdlet. You can get the results of all jobs or identify jobs by their name, ID, instance ID, computer name, location, or session, or by submitting a job object.|
+|rcsn|Receive-PSSession|The `Receive-PSSession` cmdlet gets the results of commands running in PowerShell sessions ( PSSession ) that were disconnected. If the session is currently connected, `Receive-PSSession` gets the results of commands that were running when the session was disconnected. If the session is still disconnected, `Receive-PSSession` connects to the session, resumes any commands that were suspended, and gets the results of commands running in the session.|
+|rm|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|rmdir|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|ri|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|erase|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|rd|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|del|Remove-Item|The `Remove-Item` cmdlet deletes one or more items. Because it is supported by many providers, it can delete many different types of items, including files, folders, registry keys, variables, aliases, and functions.|
+|rp|Remove-ItemProperty|The `Remove-ItemProperty` cmdlet deletes a property and its value from an item. You can use it to delete registry values and the data that they store.|
+|rjb|Remove-Job|The `Remove-Job` cmdlet deletes PowerShell background jobs that were started by the `Start-Job` cmdlet or by cmdlets such as `Invoke-Command` that support the AsJob parameter.|
+|rmo|Remove-Module|The `Remove-Module` cmdlet removes the members of a module, such as cmdlets and functions, from the current session.|
+|rbp|Remove-PSBreakpoint|The `Remove-PSBreakpoint` cmdlet deletes a breakpoint. Enter a breakpoint object or a breakpoint ID.|
+|rdr|Remove-PSDrive|The `Remove-PSDrive` cmdlet deletes temporary PowerShell drives that were created by using the `New-PSDrive` cmdlet.|
+|rsn|Remove-PSSession|The `Remove-PSSession` cmdlet closes PowerShell sessions ( PSSessions ) in the current session. It stops any commands that are running in the PSSessions , ends the PSSession , and releases the resources that the PSSession was using. If the PSSession is connected to a remote computer, this cmdlet also closes the connection between the local and remote computers.|
+|rsnp|Remove-PSSnapin|The `Remove-PSSnapin` cmdlet removes a Windows PowerShell snap-in from the current session. You can use it to remove snap-ins that you have added to Windows PowerShell You cannot use this cmdlet to remove the snap-ins that are installed with Windows PowerShell.|
+|rv|Remove-Variable|The `Remove-Variable` cmdlet deletes a variable and its value from the scope in which it is defined, such as the current session. You cannot use this cmdlet to delete variables that are set as constants or those that are owned by the system.|
+|rwmi|Remove-WMIObject|The `Remove-WmiObject` cmdlet deletes an instance of an existing Windows Management Instrumentation (WMI)class.|
+|ren|Rename-Item|The `Rename-Item` cmdlet changes the name of a specified item. This cmdlet does not affect the content of the item being renamed.|
+|rni|Rename-Item|The `Rename-Item` cmdlet changes the name of a specified item. This cmdlet does not affect the content of the item being renamed.|
+|rnp|Rename-ItemProperty|The `Rename-ItemProperty` cmdlet changes the name of a specified item property. The value of the property is not changed. For example, you can use `Rename-ItemProperty` to change the name of a registry entry.|
+|rvpa|Resolve-Path|The `Resolve-Path` cmdlet displays the items and containers that match the wildcard pattern at the location specified. The match can include files, folders, registry keys, or any other object accessible from a PSDrive provider.|
+|rujb|Resume-Job|The `Resume-Job` cmdlet resumes a workflow job that was suspended, such as by using the `Suspend-Job` cmdlet or the about_Suspend-Workflow (../PSWorkflow/about/about_Suspend-Workflow.md)activity. When a workflow job resumes, the job engine reconstructs the state, metadata, and output from saved resources, such as checkpoints. The job is restarted without any loss of state or data. The job state is changed from Suspended to Running .|
+|select|Select-Object|The `Select-Object` cmdlet selects specified properties of an object or set of objects. It can also select unique objects, a specified number of objects, or objects in a specified position in an array.|
+|sls|Select-String|The `Select-String` cmdlet uses regular expression matching to search for text patterns in input strings and files. You can use `Select-String` similar to `grep` in UNIX or `findstr.exe` in Windows.|
+|sal|Set-Alias|The `Set-Alias` cmdlet creates or changes an alias for a cmdlet or a command, such as a function, script, file, or other executable. An alias is an alternate name that refers to a cmdlet or command. For example, `sal` is the alias for the `Set-Alias` cmdlet. For more information, see about_Aliases (../Microsoft.PowerShell.Core/About/about_Aliases.md).|
+|scb|Set-Clipboard|The `Set-Clipboard` cmdlet sets the current Windows clipboard entry.|
+|sc|Set-Content|`Set-Content` is a string-processing cmdlet that writes new content or replaces the content in a file. `Set-Content` replaces the existing content and differs from the `Add-Content` cmdlet that appends content to a file. To send content to `Set-Content` you can use the Value parameter on the command line or send content through the pipeline.|
+|si|Set-Item|The `Set-Item` cmdlet changes the value of an item, such as a variable or registry key, to the value specified in the command.|
+|sp|Set-ItemProperty|The `Set-ItemProperty` cmdlet changes the value of the property of the specified item. You can use the cmdlet to establish or change the properties of items. For example, you can use `Set-ItemProperty` to set the value of the IsReadOnly property of a file object to `$True`.|
+|cd|Set-Location|The `Set-Location` cmdlet sets the working location to a specified location. That location could be a directory, a subdirectory, a registry location, or any provider path.|
+|sl|Set-Location|The `Set-Location` cmdlet sets the working location to a specified location. That location could be a directory, a subdirectory, a registry location, or any provider path.|
+|chdir|Set-Location|The `Set-Location` cmdlet sets the working location to a specified location. That location could be a directory, a subdirectory, a registry location, or any provider path.|
+|sbp|Set-PSBreakpoint|The `Set-PSBreakpoint` cmdlet sets a breakpoint in a script or in any command run in the current session. You can use `Set-PSBreakpoint` to set a breakpoint before executing a script or running a command, or during debugging, when stopped at another breakpoint.|
+|stz|Set-TimeZone|The `Set-TimeZone` cmdlet sets the system time zone to a specified time zone.|
+|sv|Set-Variable|The `Set-Variable` cmdlet assigns a value to a specified variable or changes the current value. If the variable does not exist, the cmdlet creates it.|
+|set|Set-Variable|The `Set-Variable` cmdlet assigns a value to a specified variable or changes the current value. If the variable does not exist, the cmdlet creates it.|
+|swmi|Set-WMIInstance|The `Set-WmiInstance` cmdlet creates or updates an instance of an existing Windows Management Instrumentation (WMI) class. The created or updated instance is written to the WMI repository.|
+|shcm|Show-Command|The `Show-Command` cmdlet lets you create a PowerShell command in a command window. You can use the features of the command window to run the command or have it return the command to you.|
+|sort|Sort-Object|The `Sort-Object` cmdlet sorts objects in ascending or descending order based on object property values. If sort properties are not included in a command, PowerShell uses default sort properties of the first input object. If the type of the input object has no default sort properties, PowerShell attempts to compare the objects themselves. For more information, see the Notes (#notes)section.|
+|sajb|Start-Job|The `Start-Job` cmdlet starts a PowerShell background job on the local computer.|
+|saps|Start-Process|The `Start-Process` cmdlet starts one or more processes on the local computer. By default, `Start-Process` creates a new process that inherits all the environment variables that are defined in the current process.|
+|start|Start-Process|The `Start-Process` cmdlet starts one or more processes on the local computer. By default, `Start-Process` creates a new process that inherits all the environment variables that are defined in the current process.|
+|sasv|Start-Service|The `Start-Service` cmdlet sends a start message to the Windows Service Controller for each of the specified services. If a service is already running, the message is ignored without error. You can specify the services by their service names or display names, or you can use the InputObject parameter to supply a service object that represents the services that you want to start.|
+|sleep|Start-Sleep|The `Start-Sleep` cmdlet suspends the activity in a script or session for the specified period of time. You can use it for many tasks, such as waiting for an operation to complete or pausing before repeating an operation.|
+|spjb|Stop-Job|The `Stop-Job` cmdlet stops PowerShell background jobs that are in progress. You can use this cmdlet to stop all jobs or stop selected jobs based on their name, ID, instance ID, or state, or by passing a job object to `Stop-Job`.|
+|kill|Stop-Process|The `Stop-Process` cmdlet stops one or more running processes. You can specify a process by process name or process ID (PID), or pass a process object to `Stop-Process`. `Stop-Process` works only on processes running on the local computer.|
+|spps|Stop-Process|The `Stop-Process` cmdlet stops one or more running processes. You can specify a process by process name or process ID (PID), or pass a process object to `Stop-Process`. `Stop-Process` works only on processes running on the local computer.|
+|spsv|Stop-Service|The `Stop-Service` cmdlet sends a stop message to the Windows Service Controller for each of the specified services. You can specify the services by their service names or display names, or you can use the InputObject parameter to pass a service object that represents the service that you want to stop.|
+|sujb|Suspend-Job|The `Suspend-Job` cmdlet suspends workflow jobs. Suspend means to temporarily interrupt or pause a workflow job. This cmdlet allows users who are running workflows to suspend the workflow. It complements the Suspend-Workflowhttps://go.microsoft.com/fwlink/?LinkId=267141 activity, which is a command in the workflow that suspends the workflow.|
+|tee|Tee-Object|The `Tee-Object` cmdlet redirects output, that is, it sends the output of a command in two directions (like the letter T). It stores the output in a file or variable and also sends it down the pipeline. If `Tee-Object` is the last command in the pipeline, the command output is displayed at the prompt.|
+|trcm|Trace-Command|The `Trace-Command` cmdlet configures and starts a trace of the specified expression or command. It works like Set-TraceSource, except that it applies only to the specified command.|
+|wjb|Wait-Job|The `Wait-Job` cmdlet waits for a job to be in a terminating state before continuing execution. The terminating states are:|
+|where|Where-Object|The `Where-Object` cmdlet selects objects that have particular property values from the collection of objects that are passed to it. For example, you can use the `Where-Object` cmdlet to select files that were created after a certain date, events with a particular ID, or computers that use a particular version of Windows.|
+|?|Where-Object|The `Where-Object` cmdlet selects objects that have particular property values from the collection of objects that are passed to it. For example, you can use the `Where-Object` cmdlet to select files that were created after a certain date, events with a particular ID, or computers that use a particular version of Windows.|
+|write|Write-Output|Writes the specified objects to the pipeline. If `Write-Output` is the last command in the pipeline, the objects are displayed in the console.|
+|echo|Write-Output|Writes the specified objects to the pipeline. If `Write-Output` is the last command in the pipeline, the objects are displayed in the console.|
