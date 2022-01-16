@@ -36,7 +36,7 @@ abc,defg,hij
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt \| tr -d ','`|`cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")|
+|`cat data.txt \| tr -d ','`|`cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`|
 |`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
 |`cat ddd.txt \| xargs -d, -n1 echo > out.txt`|
 
