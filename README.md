@@ -6,6 +6,8 @@
 |---|---|---|
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
 |`which make`|`gcm make \| ft definition`||
+|`which bash`|`$pshome`|
+|`pwd`|`pwd`|
 
 # data-processing
 
@@ -14,13 +16,15 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`seq 1 10`, `{1..10}`| `1..10`|
-|`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`||
+|`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|or `% ToString('000')`|
 
 ## processing string
 
 |bash|powershell|remarks|
 |---|---|---|
 |`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
+|`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
+|`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`
 
 ## parse string
 
@@ -32,6 +36,7 @@ abc,defg,hij
 
 |bash|powershell|remarks|
 |---|---|---|
+|`cat data.txt \| tr -d ','`|`cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")|
 |`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
 |`cat ddd.txt \| xargs -d, -n1 echo > out.txt`|
 
@@ -50,7 +55,7 @@ hij
 |---|---|---|
 |`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
 |`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
-|`cat data.txt \| head -n2`|`cat data.txt \| select -First 2`||
+|`cat data.txt \| head -n2`|`cat data.txt -head 2`, `cat data.txt \| select -First 2`||
 
 ## row * col
 
@@ -95,3 +100,9 @@ Dick 9 Australia
 |---|---|---|
 |`~/.bashrc`|`$profile`|
 |`$BASH --version`|`$PSVersionTable`|
+
+# misc
+
+## links
+
++ https://yanor.net/wiki/?PowerShell
