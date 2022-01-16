@@ -41,7 +41,7 @@ hij
 |bash|powershell|remarks|
 |---|---|---|
 |`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
-|`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -match "^a" }`|
+|`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
 |`cat data.txt \| head -n2`|||
 
 ## row * col
@@ -64,9 +64,17 @@ Dick 9 Australia
 |bash|powershell|remarks|
 |---|---|---|
 |`touch a.txt` | `New-Item -Type File a.txt`||
-|`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|
+|`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|`-fo`:`-force`|
 |`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|
 |`grep "word" -r .`|`ls -r . \| Select-String -Pattern "word"`|
 |`grep "word" -l -r .`|`ls -r . \| Select-String -Pattern "word" \| Select-Object -Unique Path`|see the [link](https://superuser.com/a/742120)|
-|`find . -iname \*.txt`||
-|`find . -iname \*.xlsm -exec du -bh {} \;`||
+|`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*\.txt" }`|
+|`find . -type d dirA|||
+|`find . -iname *.xlsm -exec du -bh {} \;`|||
+
+# system
+
+|bash|powershell|remarks|
+|---|---|---|
+|`ps aux`|`ps`|`ps`=`Get-Process`|
+|`kill -9 <process>`|`kill <process>`|Stop-Process|
