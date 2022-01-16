@@ -15,6 +15,19 @@
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|
 
+## parse string
+
++ example `data.txt` is below:
+
+```
+abc,defg,hij
+```
+
+|bash|powershell|remarks|
+|---|---|---|
+|`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
+
+
 ## row * 1
 
 + example `data.txt` is below:
