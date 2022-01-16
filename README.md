@@ -5,6 +5,7 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
+|`which make`|`gcm make \| ft definition`||
 
 # data-processing
 
