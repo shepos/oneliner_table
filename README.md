@@ -64,7 +64,7 @@ Dick 9 Australia
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt` \| cut -f 2,3 -d " "`|`cat .\data.txt \| cfs -d " " \| % { "{0} {1}" -f $_.P1,$_.P2 }`||
+|`cat data.txt \| cut -f 2,3 -d " "`|`cat .\data.txt \| cfs -d " " \| % { "{0} {1}" -f $_.P1,$_.P2 }`||
 |`cat data.txt \| sort -k2 -n`|`cat ./person.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
 
 # file
@@ -74,9 +74,9 @@ Dick 9 Australia
 |---|---|---|
 |`touch a.txt` | `New-Item -Type File a.txt`||
 |`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|`-fo`:`-force`|
-|`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|
+|`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|[link](https://stackoverflow.com/a/47357220)
 |`grep "word" -r .`|`ls -r . \| Select-String -Pattern "word"`|
-|`grep "word" -l -r .`|`ls -r . \| Select-String -Pattern "word" \| Select-Object -Unique Path`|see the [link](https://superuser.com/a/742120)|
+|`grep "word" -l -r .`|`ls -r . \| Select-String -Pattern "word" \| Select-Object -Unique Path`|[link](https://superuser.com/a/742120)|
 |`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*.txt" }`|
 |`find . -type d dirA`|||
 |`find . -iname *.txt -exec du -bh {} \;`|||
