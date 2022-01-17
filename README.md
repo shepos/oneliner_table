@@ -78,6 +78,7 @@ Dick 9 Australia
 
 |bash|powershell|remarks|
 |---|---|---|
+|`pwd`|`Convert-Path .`|
 |`touch a.txt` | `New-Item -Type File a.txt`||
 |`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|`-fo`:`-force`|
 |`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|[link](https://stackoverflow.com/a/47357220)
@@ -86,6 +87,16 @@ Dick 9 Australia
 |`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*.txt" }`|
 |`find . -type d dirA`|||
 |`find . -iname *.txt -exec du -bh {} \;`|||
+
+# powershell scripting
+
+Note) prepare shellscript not REPL.
+
+|bash|poweshell|remarks|
+|---|---|---|
+|`cd $(dirname ${0}) && pwd`|`$MyInvocation.MyCommand.Path`|script path itself|
+||||
+
 
 # system
 
