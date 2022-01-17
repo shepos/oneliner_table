@@ -78,7 +78,7 @@ Dick 9 Australia
 
 |bash|powershell|remarks|
 |---|---|---|
-|`pwd`|`Convert-Path .`|
+|`pwd`|`Convert-Path .`, `$pwd.Path`|
 |`touch a.txt` | `New-Item -Type File a.txt`||
 |`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|`-fo`:`-force`|
 |`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|[link](https://stackoverflow.com/a/47357220)
@@ -103,7 +103,7 @@ Note) prepare shellscript not REPL.
 |bash|powershell|remarks|
 |---|---|---|
 |`ps aux`|`ps`||
-|`kill -9 <process>`|`kill <process>`||
+|`pkill <process_name>`|`kill -n <process_name>`||
 
 # configs
 
