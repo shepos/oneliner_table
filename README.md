@@ -38,7 +38,7 @@ abc,defg,hij
 |---|---|---|
 |`cat data.txt \| tr -d ','`|`cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`|
 |`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
-|`cat ddd.txt \| xargs -d, -n1 echo > out.txt`|
+|`cat data.txt \| xargs -d, -n1 echo > out.txt`|
 
 
 ## row * 1
@@ -111,6 +111,7 @@ Note) prepare shellscript not REPL.
 |---|---|---|
 |`~/.bashrc`|`$profile`|
 |`$BASH --version`|`$PSVersionTable`|
+|`echo 'export PATH=/path/to/dir:$PATH' >> .profile`|`$ENV:Path="C:/path/to/dir;"+$ENV:Path`|
 
 # misc
 
