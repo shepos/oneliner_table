@@ -17,6 +17,7 @@
 |---|---|---|
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|or `% ToString('000')`|
+|`echo $((1+1))`, `echo '1+1' \| bc`|`echo (1+2)`|
 
 ## processing string
 
@@ -88,7 +89,7 @@ Dick 9 Australia
 |`find . -type d dirA`|||
 |`find . -iname *.txt -exec du -bh {} \;`|||
 
-# powershell scripting
+# scripting
 
 Note) prepare shellscript not REPL.
 
