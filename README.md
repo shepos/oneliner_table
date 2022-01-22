@@ -18,6 +18,7 @@
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`|`1..10 \| % { '{0:d3}' -f $_ }`|or `% ToString('000')`|
 |`echo $((1+1))`, `echo '1+1' \| bc`|`echo (1+2)`|
+|`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 
 ## processing string
 
@@ -114,6 +115,7 @@ Note) prepare shellscript not REPL.
 |`~/.bashrc`|`$profile`|
 |`$BASH --version`|`$PSVersionTable`|
 |`echo 'export PATH=/path/to/dir:$PATH' >> .profile`|`$ENV:Path="C:/path/to/dir;"+$ENV:Path`|
+|`printenv`, `env`|`ls env:`|
 
 # misc
 
