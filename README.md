@@ -74,6 +74,7 @@ Dick 9 Australia
 |---|---|---|
 |`cat data.txt \| cut -f 1,3 -d " "`|`cat data.txt \| cfs -d " " \| ft P1,P3`||
 |`cat data.txt \| sort -k2 -n`|`cat data.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
+|`cat data.txt \| sort -k2 -n \| cut -f1 -d " "`|`cat ./data.txt \| %{,$_.split(" ")} \| sort -p {[int]$_[1]} \| %{$_[0]}`|
 ||`cat data.txt \| cfs -d " " \| % {[int]$_.P2} \| measure -ave`|
 
 # file
