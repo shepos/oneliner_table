@@ -11,14 +11,19 @@
 
 # data-processing
 
+## calculation
+
+|bash|powershell|remarks|
+|---|---|---|
+|`echo $((1+2))`, `echo '1+2' \| bc`|`1+2`, `"1+2" \| iex`|
+|`seq 1 10 \| awk '{a+=$1} END{print a;}`, `seq 1 10 \| paste -s -d "+" - \| bc` | `(1..10 \| measure -sum).Sum`|
+
 ## generate
 
 |bash|powershell|remarks|
 |---|---|---|
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`|or `% $_.ToString('000')`|
-|`seq 1 10 \| paste -s -d "+" -`|`(1..10) -join "+"`, `$OFS="+"; [string](1..10); rv OFS`|
-|`echo $((1+1))`, `echo '1+1' \| bc`|`echo (1+2)`, `"1+2" \| iex`, `(1..2 \| measure -sum).Sum`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 
 ## processing string
@@ -27,7 +32,7 @@
 |---|---|---|
 |`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 |`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
-|`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`
+|`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
 
 ## parse string
 
@@ -59,6 +64,7 @@ hij
 |`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
 |`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
 |`cat data.txt \| head -n2`|`cat data.txt -head 2`, `cat data.txt \| select -First 2`||
+|`cat data.txt \| paste -s -d "+" -` | `(cat data.txt) -join "+"`, `$OFS="+"; [string](0..10); rv OFS`|
 
 ## row * col
 
@@ -109,6 +115,7 @@ Note) prepare shellscript not REPL.
 |---|---|---|
 |`ps aux`|`ps`||
 |`pkill <process_name>`|`kill -n <process_name>`||
+|`nproc`|`Get-CimInstance -Class Win32_Processor \| fl NumberOfCores`|
 
 # configs
 
