@@ -17,6 +17,7 @@
 |---|---|---|
 |`echo $((1+2))`, `echo '1+2' \| bc`|`1+2`, `"1+2" \| iex`|
 |`seq 1 10 \| awk '{a+=$1} END{print a;}`, `seq 1 10 \| paste -s -d "+" - \| bc` | `(1..10 \| measure -sum).Sum`|
+|`echo $(seq 1 100 \| grep 3) $(seq 1 3 100) \| xargs -n1 \| sort -n \| uniq` | `1..100 \| ?{("{0}" -f $_).indexof("3") -ge 0 -or $_ % 3 -eq 0}`, `1..33 \| %{$_ * 3} \| ?{"3" -in [char[]][string]($_)}`|
 
 ## generate
 
@@ -25,6 +26,7 @@
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`|or `% $_.ToString('000')`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
+|`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
 
 ## processing string
 
