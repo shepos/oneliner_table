@@ -18,7 +18,7 @@
 |`seq 1 10`, `{1..10}`| `1..10`|
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`|or `% $_.ToString('000')`|
 |`seq 1 10 \| paste -s -d "+" -`|`(1..10) -join "+"`, `$OFS="+"; [string](1..10); rv OFS`|
-|`echo $((1+1))`, `echo '1+1' \| bc`|`echo (1+2)`, `"1+2" \| iex`|
+|`echo $((1+1))`, `echo '1+1' \| bc`|`echo (1+2)`, `"1+2" \| iex`, `(1..2 \| measure -sum).Sum`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 
 ## processing string
