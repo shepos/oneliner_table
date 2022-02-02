@@ -27,6 +27,7 @@
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`, `1..10 \| %{$_.ToString('000')}`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 |`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
+|`printf hello"%.s" {1..10}`|`"hello" * 10`|
 |`yes 'echo $((RANDOM%100 + 1))' \| head -n10 \| bash`|`1..5 \| %{Get-Random -max 100}`|
 
 ## processing string
@@ -36,6 +37,7 @@
 |`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 |`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
 |`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
+|`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`|
 
 ## parse string
 
@@ -47,10 +49,10 @@ abc,defg,hij
 
 |bash|powershell|remarks|
 |---|---|---|
-|`cat data.txt \| tr -d ','`|`cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`, `${c:data.txt} -replace ",", ""`|
+|`cat data.txt \| wc -m`|`(cat data.txt).Length)`|
+|`cat data.txt \| tr -d ','`|`-join (cat str1.txt).split(",")`, `cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`, `${c:data.txt} -replace ",", ""`|`c:...` is called probider|
 |`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
 |`cat data.txt \| xargs -d, -n1 echo > out.txt`|`cat data.txt \| %{$_ -split ','}`|
-
 
 ## row * 1
 
