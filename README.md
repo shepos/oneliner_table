@@ -27,7 +27,7 @@
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`|or `% $_.ToString('000')`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 |`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
-|`seq 1 100 \| shuf -n 10`|`1..5 \| %{Get-Random -max 100}`|
+|`yes 'echo $((RANDOM%100 + 1))' \| head -n10 \| bash`|`1..5 \| %{Get-Random -max 100}`|
 
 ## processing string
 
@@ -68,6 +68,7 @@ hij
 |`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
 |`cat data.txt \| head -n2`|`cat data.txt -head 2`, `cat data.txt \| select -First 2`||
 |`cat data.txt \| paste -s -d "+" -` | `(cat data.txt) -join "+"`, `$OFS="+"; [string](0..10); rv OFS`|
+|`cat data.txt \| shuf -n2`|`cat data.txt \| Get-Random -Count 2`|
 
 ## row * col
 
