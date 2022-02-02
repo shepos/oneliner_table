@@ -27,6 +27,7 @@
 |`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`|or `% $_.ToString('000')`|
 |`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
 |`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
+|`seq 1 100 \| shuf -n 10`|`1..5 \| %{Get-Random -max 100}`|
 
 ## processing string
 
