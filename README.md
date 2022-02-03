@@ -104,6 +104,8 @@ Dick 9 Australia
 |`find . -iname *.txt`|`ls -r . \| ? { $_ -match ".*.txt" }`|
 |`find . -type d dirA`|||
 |`find . -iname *.txt -exec du -bh {} \;`|||
+|`cat data.txt \| md5sum`|`(Get-FileHash -a md5 data.txt).Hash`, ` get-filehash -a md5 -i ([IO.MemoryStream]::new([Text.Encoding]::utf8.GetBytes((cat -raw data.txt))))`|`-raw`: get as [string]|
+|`echo -n "hello" \| md5sum`|`get-filehash -a md5 -i ([IO.MemoryStream]::new([Text.Encoding]::utf8.GetBytes(("hello"))))`|
 
 # scripting
 
