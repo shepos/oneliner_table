@@ -17,6 +17,7 @@
 |---|---|---|
 |`echo $((1+2))`, `echo '1+2' \| bc`|`1+2`, `"1+2" \| iex`|
 |`seq 1 10 \| awk '{a+=$1} END{print a;}`, `seq 1 10 \| paste -s -d "+" - \| bc` | `(1..10 \| measure -sum).Sum`|
+||`1..100 \| `%{$num=$_; ,@($_, (@(15, 5, 3, 1) \| %{$num % $_ -eq 0}).indexof($true))} \| %{@("fizzbuzz", "buzz", "fizz", $_[0])[$_[1]]}`|
 |`echo $(seq 1 100 \| grep 3) $(seq 1 3 100) \| xargs -n1 \| sort -n \| uniq` | `1..100 \| ?{("{0}" -f $_).indexof("3") -ge 0 -or $_ % 3 -eq 0}`, `1..33 \| %{$_ * 3} \| ?{"3" -in [char[]][string]($_)}`|
 
 ## generate
@@ -131,6 +132,7 @@ Note) prepare shellscript not REPL.
 |---|---|---|
 |`~/.bashrc`|`$profile`|
 |`$BASH --version`|`$PSVersionTable`|
+|`pwd`|`(pwd).path`|
 |`echo 'export PATH=/path/to/dir:$PATH' >> .profile`|`$ENV:Path="C:/path/to/dir;"+$ENV:Path`|
 |`printenv`, `env`|`ls env:`|
 
