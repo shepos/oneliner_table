@@ -42,11 +42,6 @@
 |`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
 |`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`|`-join` is necessary|
 |`echo "2020/04/12" \| date "+%Y%m%d" -f -`|`"2020/04/12" \| date -f "yyyyMMdd"`|
-
-## processing binary
-
-|bash|powershell|remarks|
-|---|---|---|
 |`echo -n "hello" \| xxd -p`|`-join (("hello" \| Format-Hex).Bytes \| %{$_.ToString("x2"))`|
 
 ## parse string
