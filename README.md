@@ -35,6 +35,7 @@
 
 |bash|powershell|remarks|
 |---|---|---|
+|` echo "abcba" \| tr [:lower:] [:upper:]`, `TMP=abcba; echo ${TMP^^}`|`"abcba".ToUpper()`|
 |`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 |`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
 |`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
