@@ -1,4 +1,0 @@
-Alice 22 Japan
-Bob 34 France
-Chen 19 China
-Dick 9 Australia
