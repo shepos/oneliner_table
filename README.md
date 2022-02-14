@@ -118,7 +118,7 @@ Note) prepare shellscript not REPL.
 
 |bash|poweshell|remarks|
 |---|---|---|
-|`cd $(dirname ${0}) && pwd`|`$MyInvocation.MyCommand.Path`|script path itself|
+|`cd $(dirname ${0}) && pwd`|`$PSScriptRoot`|script path itself|
 ||||
 
 
