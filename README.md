@@ -76,6 +76,7 @@ hij
 |`cat data.txt \| head -n2`|`cat data.txt -head 2`, `cat data.txt \| select -First 2`||
 |`cat data.txt \| paste -s -d "+" -` | `(cat data.txt) -join "+"`, `$OFS="+"; [string](0..10); rv OFS`|
 |`cat data.txt \| shuf -n2`|`cat data.txt \| Get-Random -Count 2`|
+||`cat data.txt \| % {$i=0} {"Value:$_ Index:$i"; $i++}`|
 
 ## row * col
 
