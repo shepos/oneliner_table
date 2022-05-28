@@ -5,6 +5,7 @@
 |bash|powershell|remarks|
 |---|---|---|
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
+||`alias |` ?{$_ .DisplayName -match "Get-Content"}`|
 |`which make`|`(gcm make).Path`||
 |`which bash`|`$pshome`|
 |`pwd`|`pwd`|
