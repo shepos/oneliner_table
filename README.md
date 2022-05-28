@@ -6,6 +6,7 @@
 |---|---|---|
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
 ||`alias \| ?{$_.Definition -match "Get-Content"}`|
+||`alias \| group {$_.Definition} \| sort -p Name|
 |`which make`|`(gcm make).Path`||
 |`which bash`|`$pshome`|
 |`pwd`|`pwd`|
