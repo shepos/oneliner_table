@@ -97,6 +97,7 @@ Dick 9 Australia
 |`cat data.txt \| sort -k2 -n`|`cat data.txt \| cfs -d " " \| sort -p "P2"`|`-p`=`-Property`|
 |`cat data.txt \| sort -k2 -n \| cut -f1 -d " "`|`cat ./data.txt \| %{,$_.split(" ")} \| sort -p {[int]$_[1]} \| %{$_[0]}`|
 |`cat data.txt \| cut -f2 -d ' ' \| awk '{x++;sum+=$1}END {printf("%.2f\n", sum/x)}'`|`cat data.txt \| cfs -d " " \| % {[int]$_.P2} \| measure -ave`|
+||`(cat data.txt \| cfs -d "," \| %{$_.P1 * $_.P2} \| measure -sum).Sum`|
 
 # file
 
