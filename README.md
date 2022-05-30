@@ -32,6 +32,7 @@
 |`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
 |`printf hello"%.s" {1..10}`|`"hello" * 10`|
 |`yes 'echo $((RANDOM%100 + 1))' \| head -n10 \| bash`|`1..5 \| %{Get-Random -max 100}`|
+||`'a'..'z' -join ""`(in PowerShell 7.2), `[char[]]([char]'a'..[char]'z') -join ""`|
 
 ## processing string
 
