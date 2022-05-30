@@ -60,6 +60,7 @@ abc,defg,hij
 |`cat data.txt \| tr -d ','`|`-join (cat str1.txt).split(",")`, `cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`, `${c:data.txt} -replace ",", ""`|`c:...` is called probider|
 |`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
 |`cat data.txt \| xargs -d, -n1 echo > out.txt`|`cat data.txt \| %{$_ -split ','}`|
+||`[char[]][string](cat ./words2.txt) \| group \| sort -p Count -desc \| Select -first 5 Count, Name`|
 
 ## row * 1
 
