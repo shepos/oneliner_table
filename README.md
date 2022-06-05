@@ -108,6 +108,7 @@ Dick 9 Australia
 |---|---|---|
 |`pwd`|`Convert-Path .`, `$pwd.Path`|
 |`touch a.txt` | `New-Item -Type File a.txt`||
+||`resolve-path ./a.txt`, `(ls ./a.txt).FullName`|
 |`rm -rf dir`|`if { Test-Path dir } { rm -r -fo dir}`|`-fo`:`-force`|
 |`mkdir -p sub/dir`|`mkdir -ea 0 sub/dir`|[link](https://stackoverflow.com/a/47357220)
 |`grep "word" -r .`|`ls -r . \| Select-String -Pattern "word"`|
