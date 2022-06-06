@@ -7,6 +7,7 @@
 |`<cmd> --help`|`man <cmd>`, `help <cmd>`, `<cmd> -?`||
 ||`alias \| ?{$_.Definition -match "Get-Content"}`|
 ||`alias \| group {$_.Definition} \| sort -p Name`|
+||`Get-Command \| group Verb \| sort -p count -desc`|
 |`which make`|`(gcm make).Path`||
 |`which bash`|`$pshome`|
 |`pwd`|`pwd`|
