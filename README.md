@@ -44,7 +44,7 @@
 |`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
 |`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
 |`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
-|`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`|`-join` is necessary|
+|`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`, `"soaibuoaidbj" \| %{-join $_[$_.length..0]}`|`-join` is necessary|
 |`echo "2020/04/12" \| date "+%Y%m%d" -f -`|`"2020/04/12" \| date -f "yyyyMMdd"`|
 |`echo -n "hello" \| xxd -p`|`-join (("hello" \| Format-Hex).Bytes \| %{$_.ToString("x2"))`|
 
