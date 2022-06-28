@@ -139,6 +139,7 @@ Note) prepare shellscript not REPL.
 |`pkill <process_name>`|`kill -n <process_name>`||
 |`nproc`|`Get-CimInstance -Class Win32_Processor \| fl NumberOfCores`|
 ||`[System.Environment]::OSVersion`|
+||`Get-CimInstance -ClassName Wind32_LogicalDisk \| Select *`|
 
 # configs
 
