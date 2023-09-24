@@ -41,16 +41,16 @@
 
 ## processing string
 
-|bash|powershell|remarks|
-|---|---|---|
-|` echo "abcba" \| tr [:lower:] [:upper:]`, `TMP=abcba; echo ${TMP^^}`|`"abcba".ToUpper()`|
-|`TMP="hello"; echo ${TMP:2:2}`|`-join "hello"[2..3]`|
-|`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` |
-|`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`|`apt-get install nkf`|
-|`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`|
-|`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`, `"soaibuoaidbj" \| %{-join $_[$_.length..0]}`|`-join` is necessary|
-|`echo "2020/04/12" \| date "+%Y%m%d" -f -`|`"2020/04/12" \| date -f "yyyyMMdd"`|
-|`echo -n "hello" \| xxd -p`|`-join (("hello" \| Format-Hex).Bytes \| %{$_.ToString("x2"))`|
+|bash|powershell|R|remarks|
+|---|---|---|---|
+|` echo "abcba" \| tr [:lower:] [:upper:]`, `TMP=abcba; echo ${TMP^^}`|`"abcba".ToUpper()`| `"abcba" \|> str_to_upper()` |
+|`TMP="hello"; echo ${TMP:2:2}`|`-join "hello"[2..3]`| `"hello" \|> str_sub(3,4)` |
+|`echo abcba \| sed s/b/z/g`, `echo abcba \| tr 'b' 'z'` | `"abcba" -replace "b", "z"` | `"abcba" \|> str_replace_all("b", "z")` |
+|`cat utf8.txt`, `nkf --ic=UTF-8 utf8.txt`|`cat utf8.txt -enc utf8`| ? |`apt-get install nkf`|
+|`sed -e -i '/^$/d' data.txt`|`cat data.txt \| ? {$_ -ne ""}`| `readLines("./data.txt") \|> discard(\(x) x=="") \|> cat(sep="\n")` |
+|`echo "hello" \| rev`|`$s="hello"; -join $s[$s.length..0]`, `"hello" \| %{-join $_[$_.length..0]}`| `"hello" \|> str_split_1("") \|> rev() \|> str_flatten("")` | ps: `-join` is necessary|\
+|`echo "2020/04/12" \| date "+%Y%m%d" -f -`|`"2020/04/12" \| date -f "yyyyMMdd"`| `"2020/04/12" \|> ymd() \|> format("%Y%m%d")` |
+|`echo -n "hello" \| xxd -p`|`-join (("hello" \| Format-Hex).Bytes \| %{$_.ToString("x2"))`| ? |
 
 ## parse string
 
@@ -60,13 +60,13 @@
 abc,defg,hij
 ```
 
-|bash|powershell|remarks|
-|---|---|---|
+|bash|powershell|R|remarks|
+|---|---|---|---|
 |`cat data.txt \| wc -m`|`(cat data.txt).Length)`|
-|`cat data.txt \| tr -d ','`|`-join (cat str1.txt).split(",")`, `cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`, `${c:data.txt} -replace ",", ""`|`c:...` is called probider|
-|`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`| or ` % { $_.Split(",")[1] }`|
+|`cat data.txt \| tr -d ','`|`-join (cat str1.txt).split(",")`, `cat data.txt \| %{ $_ -replace ",", ""}`, `(cat data.txt).Replace(",","")`, `${c:data.txt} -replace ",", ""`| `"abc,defg,hij" \|> str_split_1(",")` |ps: `c:...` is called probider|
+|`cat data.txt \| cut -f 2 -d ','`|`cat data.txt \| %{($_ -split ",")[1]}`, `cat data.txt \| % { $_.Split(",")[1] }`| `"abc,defg,hij" \|> str_split_1(",") \|> _[2]` |
 |`cat data.txt \| xargs -d, -n1 echo > out.txt`|`cat data.txt \| %{$_ -split ','}`|
-||`[char[]][string](cat ./words2.txt) \| group \| sort -p Count -desc \| Select -first 5 Count, Name`|
+||`[char[]][string](cat ./words2.txt) \| group \| sort -p Count -desc \| Select -first 5 Count, Name`| `"abc,defg,hij" \|> str_split_1("") \|> as_tibble() \|> summarize(n=n(), .by=value) \|> arrange(desc(n)) \|> slice(1:5)` |
 
 ## row * 1
 
