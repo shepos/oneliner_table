@@ -78,13 +78,13 @@ defg
 hij
 ```
 
-|bash|powershell|remarks|
-|---|---|---|
+|bash|powershell|R|remarks|
+|---|---|---|---|
 |`cat data.txt \| wc -l` | `(cat data.txt).Length`, `cat data.txt \| measure -Line`|
-|`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|use `-match` If insensitive|
+|`cat data.txt \| grep -E "^a"` | `cat data.txt \| ? { $_ -cmatch "^a" }`|  | use `-match` If insensitive|
 |`cat data.txt \| head -n2`|`cat data.txt -head 2`, `cat data.txt \| select -First 2`||
 |`cat data.txt \| paste -s -d "+" -` | `(cat data.txt) -join "+"`, `$OFS="+"; [string](0..10); rv OFS`|
-|`cat data.txt \| shuf -n2`|`cat data.txt \| Get-Random -Count 2`|
+|`cat data.txt \| shuf -n2`|`cat data.txt \| Get-Random -Count 2`| `read_lines(I("abc\ndefg\nhij")) \|> sample()` |
 ||`cat data.txt \| % {$i=0} {"Value:$_ Index:$i"; $i++}`|
 
 ## row * col
