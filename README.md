@@ -29,15 +29,15 @@
 
 ## generate
 
-|bash|powershell|remarks|
-|---|---|---|
-|`seq 1 10`, `{1..10}`| `1..10`|
-|`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`, `1..10 \| %{$_.ToString('000')}`|
-|`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`|[link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
-|`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`|
-|`printf hello"%.s" {1..10}`|`"hello" * 10`|
-|`yes 'echo $((RANDOM%100 + 1))' \| head -n10 \| bash`|`1..5 \| %{Get-Random -max 100}`|
-||`'a'..'z' -join ""`(in PowerShell 7.2), `[char[]]([char]'a'..[char]'z') -join ""`|
+|bash|powershell|R|remarks|
+|---|---|---|---|
+|`seq 1 10`, `{1..10}`| `1..10`| `cat(1:10)` |
+|`seq -f %03g 10`, `echo {001..010}` |`1..10 \| % { '{0:d3}' -f $_ }`, `1..10 \| %{$_.ToString('000')}`| `1:10 \|> str_pad(width=3, pad="0")` |
+|`yes 1 \| head -n10`| `@(1) * 10`, `,1 * 10`| `rep(1,10)`  | [link](https://stackoverflow.com/questions/226596/powershell-array-initialization)|
+|`echo "hello" \| fold -s1 \| paste -s -d "," -`|`([char[]]"hello") -join "."`| `"hello" \|> str_split_1("") \|> str_flatten(collapse=".")` |
+|`printf hello"%.s" {1..10}`|`"hello" * 10`| `rep("hello",10) \|> str_flatten()` |
+|`yes 'echo $((RANDOM%100 + 1))' \| head -n10 \| bash`|`1..5 \| %{Get-Random -max 100}`| `sample.int(100,5,replace=TRUE)` |
+||`'a'..'z' -join ""`(in PowerShell 7.2), `[char[]]([char]'a'..[char]'z') -join ""`| `letters \|> str_flatten()` |
 
 ## processing string
 
