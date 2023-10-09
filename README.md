@@ -26,6 +26,7 @@
 |`seq 1 10 \| awk '{a+=$1} END{print a;}`, `seq 1 10 \| paste -s -d "+" - \| bc` | `(1..10 \| measure -sum).Sum`| `1:10 \|> sum()`, `eval(parse(text="1+2"))` |
 ||`1..100 \| %{$num=$_; ,@($_, (@(15, 5, 3, 1) \| %{$num % $_ -eq 0}).indexof($true))} \| %{@("fizzbuzz", "buzz", "fizz", $_[0])[$_[1]]}`| `1:100 \|> as_tibble() \|> mutate(v3 = if_else(value%%3==0,"fizz",NA), v5 = if_else(value%%5==0, "buzz",NA), v15 = str_c(v3, v5)) \|> mutate(res = coalesce(v15,v3,v5,as.character(value))) \|> pull(res)` |
 |`echo $(seq 1 100 \| grep 3) $(seq 1 3 100) \| xargs -n1 \| sort -n \| uniq` | `1..100 \| ?{("{0}" -f $_).indexof("3") -ge 0 -or $_ % 3 -eq 0}`, `1..33 \| %{$_ * 3} \| ?{"3" -in [char[]][string]($_)}`| `1:100 \|> as_tibble() \|> mutate(chr = value \|> as.character()) \|> filter(value%%3==0 \| str_detect(chr,"3")) \|> pull(value)` |
+||| `1:27 \|> reduce(\(tb,nxt) tb \|> filter(value == nth(value, nxt) \| (value %% nth(value, nxt) != 0)), .init=(2:10000 \|> as_tibble() \|> mutate(flag = TRUE))) \|> pull(value)` | Sieve of Eratosthenes |
 
 ## generate
 
