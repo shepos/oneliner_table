@@ -14,7 +14,7 @@
 ||`Get-Command \| group Verb \| sort -p count -desc`|
 |`which make`|`(gcm make).Path`||
 |`which bash`|`$pshome`|
-|`pwd`|`pwd`|`print working directory`|
+|`pwd`|`pwd`|print working directory|
 
 # data-processing
 
